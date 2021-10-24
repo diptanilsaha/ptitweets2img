@@ -73,7 +73,7 @@ def at_exit():
 # Driver code
 def app():
     try:
-        userID = "pixelateBlue"
+        userID = "PTI_News"
         logging.info('Starting '+ userID +' Tweet Bot')
         # Here goes the twitter handle for the user
         # whose tweets are to be extracted.
