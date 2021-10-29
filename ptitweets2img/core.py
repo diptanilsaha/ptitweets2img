@@ -5,6 +5,7 @@ from PIL import Image, ImageFont, ImageDraw
 from pilmoji import Pilmoji
 import os
 import validators
+from langdetect import detect
 
 class PtiTweets2Img:
     def __init__(self,  
@@ -36,7 +37,7 @@ class PtiTweets2Img:
         self.lang = tweet._json['lang']
 
     def generateTextImage(self, font, header, bgImg):
-        if self.lang == 'en':
+        if detect(self.text) == 'en':
             temp = Image.open(bgImg)
             drawRectangle = ImageDraw.Draw(temp)
             fnt = ImageFont.truetype(font, 42)
