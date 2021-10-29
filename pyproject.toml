@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "ptitweets2img"
+version = "0.1.0"
+description = ""
+authors = ["diptanil <<>>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Pillow = "^8.4.0"
+tweepy = "^4.1.0"
+Flask = "^2.0.2"
+emoji = "^1.6.1"
+pilmoji = "^2.0.1"
+instagrapi = "^1.15.6"
+validators = "^0.18.2"
+pytz = "^2021.3"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

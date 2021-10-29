@@ -37,13 +37,14 @@ bgImg = "./media/ptitweet-bg.png"
 
 # Fill the X's with the credentials obtained by
 # following the above mentioned procedure.
-consumer_key = ""
-consumer_secret = ""
-access_key = ""
-access_secret = ""
+consumer_key = os.environ['consumer_key']
 
-username = ""
-password = ""
+consumer_secret = os.environ['consumer_secret']
+access_key = os.environ['access_key']
+access_secret = os.environ['access_secret']
+
+username = os.environ['username']
+password = os.environ['password']
 
 t2iObj = PtiTweets2Img(consumer_key, consumer_secret, access_key, access_secret)
 
@@ -96,30 +97,31 @@ def app():
 
                 if stack != None:
                     for i in stack:
-                        tweetData.append(i)
-                        logging.info("Adding new tweet")
-                        t2iObj.getTweet(i)
-                        file =  t2iObj.generateTextImage(font, header, bgImg)
-                        logging.info(str("Image saved at "+ file))
-                        cl.photo_upload(file, caption=t2iObj.tweet_text + "\n.\n.\nFor more information regarding this account, link in the bio.\n.\n.\n.\n.\n.\n.\n.(Ignore the hashtags)\n#india #news #politics #indianpolitics #bjp #congress #sports #modi #rahulgandhi #entertainment #presstrustofindia #pti #ndtv #republic #timesnow #tmc")
-                        os.remove(file)
+                      tweetData.append(i)
+                      logging.info("Adding new tweet")
+                      t2iObj.getTweet(i)
+                      file =  t2iObj.generateTextImage(font, header, bgImg)
+                      logging.info(str("Image saved at "+ file))
+                      cl.photo_upload(file, caption=t2iObj.tweet_text + "\n.\n.\n.\n.\n.\n.\nFor more information regarding this account, link in the bio.\n.\n.\n.\n.\n.\n.\n.\n(Ignore the hashtags)\n.\n#india #news #politics #indianpolitics #bjp #congress #sports #modi #rahulgandhi #entertainment #presstrustofindia #pti #ndtv #republic #timesnow #tmc")
+                      os.remove(file)
                 else:
                     continue
 
                 time.sleep(10)
 
-            except Exception as e:
+            except Exception:
                 #raise e
                 logging.warning("Error!")
                 logging.info('An unknown Error encountered!')
 
-    except Exception as e:
+    except Exception:
         #raise e
         logging.warning("Error!")
         logging.info('Error encountered while initializing!')
 
-    except KeyboardInterrupt as e:
+    except KeyboardInterrupt:
         logging.warning("Shutting Down!")
+
 
 keep_alive()
 app()
