@@ -1,11 +1,11 @@
 from . import tweepy, tw
 from datetime import datetime
-from textwrap import TextWrapper
 from PIL import Image, ImageFont, ImageDraw
 from pilmoji import Pilmoji
 import os
 import validators
 from langdetect import detect
+import pytz
 
 class PtiTweets2Img:
     def __init__(self,  
@@ -27,10 +27,11 @@ class PtiTweets2Img:
 
 
     def getTweet(self, status):
+        IST = pytz.timezone('Asia/Kolkata')
         self.status = status
         tweet = self.api.get_status(self.status, tweet_mode='extended')
 
-        self.time = datetime.strftime(datetime.strptime(tweet._json['created_at'], "%a %b %d %H:%M:%S %z %Y"), "%I:%M %p %b %d, %Y")
+        self.time = datetime.strftime(datetime.strptime(tweet._json['created_at'], "%a %b %d %H:%M:%S %z %Y").astimezone(IST), "%I:%M %p %b %d, %Y")
 
         self.tweet_text = tweet._json['full_text']
 
