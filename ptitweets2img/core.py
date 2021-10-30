@@ -38,7 +38,7 @@ class PtiTweets2Img:
         self.lang = tweet._json['lang']
 
     def generateTextImage(self, font, header, bgImg):
-        if detect(self.text) == 'en' or self.lang == 'en':
+        if detect(self.tweet_text) == 'en' or self.lang == 'en':
             temp = Image.open(bgImg)
             drawRectangle = ImageDraw.Draw(temp)
             fnt = ImageFont.truetype(font, 42)
