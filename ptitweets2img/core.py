@@ -6,6 +6,7 @@ import os
 import validators
 from langdetect import detect
 import pytz
+from html import unescape
 
 class PtiTweets2Img:
     def __init__(self,  
@@ -33,7 +34,7 @@ class PtiTweets2Img:
 
         self.time = datetime.strftime(datetime.strptime(tweet._json['created_at'], "%a %b %d %H:%M:%S %z %Y").astimezone(IST), "%I:%M %p %b %d, %Y")
 
-        self.tweet_text = tweet._json['full_text']
+        self.tweet_text = unescape(tweet._json['full_text'])
 
         self.lang = tweet._json['lang']
 
